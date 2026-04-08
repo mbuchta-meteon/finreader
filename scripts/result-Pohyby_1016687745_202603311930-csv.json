@@ -1,0 +1,961 @@
+{
+  "currency": "CZK",
+  "summary": "Bank statement for Marián Buchta showing significant travel and skiing expenses in Austria with multiple hotel bookings, ski passes, and restaurants. Large regular payments include mortgage (28,130 CZK) and various utilities. Notable large one-off expenses include villa rental (33,342 CZK) and multiple Booking.com hotel reservations.",
+  "detectedAccounts": [
+    "1016687745/5500"
+  ],
+  "transactions": [
+    {
+      "date": "2026-03-29",
+      "amount": -542.16,
+      "merchant": "DoN",
+      "category": "Restaurants & Bars"
+    },
+    {
+      "date": "2026-03-29",
+      "amount": -4908.28,
+      "merchant": "ÖBB",
+      "category": "Transport"
+    },
+    {
+      "date": "2026-03-28",
+      "amount": -101.89,
+      "merchant": "BIPA",
+      "category": "Shopping"
+    },
+    {
+      "date": "2026-03-29",
+      "amount": -1210,
+      "merchant": "idos.cz",
+      "category": "Transport"
+    },
+    {
+      "date": "2026-03-27",
+      "amount": -649.54,
+      "merchant": "Rendl Restaurant",
+      "category": "Restaurants & Bars"
+    },
+    {
+      "date": "2026-03-27",
+      "amount": -731.05,
+      "merchant": "Rendl Restaurant",
+      "category": "Restaurants & Bars"
+    },
+    {
+      "date": "2026-03-27",
+      "amount": -4126.47,
+      "merchant": "ABBTicketRendlbahn",
+      "category": "Entertainment"
+    },
+    {
+      "date": "2026-03-26",
+      "amount": -354.06,
+      "merchant": "DOM SCHNITZEL HBF",
+      "category": "Restaurants & Bars"
+    },
+    {
+      "date": "2026-03-26",
+      "amount": -4070.43,
+      "merchant": "ÖBB",
+      "category": "Transport"
+    },
+    {
+      "date": "2026-03-26",
+      "amount": -12697.81,
+      "merchant": "Booking.com",
+      "category": "Entertainment"
+    },
+    {
+      "date": "2026-03-27",
+      "amount": -199,
+      "merchant": "Rohlik.cz",
+      "category": "Groceries"
+    },
+    {
+      "date": "2026-03-26",
+      "amount": -446,
+      "merchant": "České dráhy",
+      "category": "Transport"
+    },
+    {
+      "date": "2026-03-26",
+      "amount": -816.9,
+      "merchant": "Lidl",
+      "category": "Groceries"
+    },
+    {
+      "date": "2026-03-25",
+      "amount": -50,
+      "merchant": "NYX*AZWASHsro",
+      "category": "Other"
+    },
+    {
+      "date": "2026-03-25",
+      "amount": -338,
+      "merchant": "Bistro Drogérka",
+      "category": "Restaurants & Bars"
+    },
+    {
+      "date": "2026-03-25",
+      "amount": -685,
+      "merchant": "Ba Saigon",
+      "category": "Restaurants & Bars"
+    },
+    {
+      "date": "2026-03-25",
+      "amount": -1318,
+      "merchant": "Decathlon",
+      "category": "Shopping"
+    },
+    {
+      "date": "2026-03-25",
+      "amount": -3419.37,
+      "merchant": "Rohlik.cz",
+      "category": "Groceries"
+    },
+    {
+      "date": "2026-03-25",
+      "amount": 10000,
+      "merchant": "Buchta Marián",
+      "category": "Investments & Transfers"
+    },
+    {
+      "date": "2026-03-22",
+      "amount": -30,
+      "merchant": "EasyPark",
+      "category": "Transport"
+    },
+    {
+      "date": "2026-03-24",
+      "amount": -1496,
+      "merchant": "Česká správa sociálního zabezpečení",
+      "category": "Insurance"
+    },
+    {
+      "date": "2026-03-24",
+      "amount": -300,
+      "merchant": "Generali penzijní společnost",
+      "category": "Savings & Pension"
+    },
+    {
+      "date": "2026-03-23",
+      "amount": 29.69,
+      "merchant": "Delta Green s.r.o.",
+      "category": "Investments & Transfers"
+    },
+    {
+      "date": "2026-03-20",
+      "amount": -2500,
+      "merchant": "ATM Česká spořitelna",
+      "category": "ATM & Cash"
+    },
+    {
+      "date": "2026-03-19",
+      "amount": -385.19,
+      "merchant": "Shell",
+      "category": "Fuel"
+    },
+    {
+      "date": "2026-03-20",
+      "amount": -338,
+      "merchant": "Bistro Drogérka",
+      "category": "Restaurants & Bars"
+    },
+    {
+      "date": "2026-03-20",
+      "amount": -927.2,
+      "merchant": "Albert",
+      "category": "Groceries"
+    },
+    {
+      "date": "2026-03-20",
+      "amount": -1514,
+      "merchant": "RPishop.cz",
+      "category": "Shopping"
+    },
+    {
+      "date": "2026-03-20",
+      "amount": -3067.28,
+      "merchant": "Rohlik.cz",
+      "category": "Groceries"
+    },
+    {
+      "date": "2026-03-19",
+      "amount": -735,
+      "merchant": "Namaste Foodland",
+      "category": "Restaurants & Bars"
+    },
+    {
+      "date": "2026-03-20",
+      "amount": -50.64,
+      "merchant": "Heuro",
+      "category": "Other"
+    },
+    {
+      "date": "2026-03-18",
+      "amount": -552.6,
+      "merchant": "SPAR",
+      "category": "Groceries"
+    },
+    {
+      "date": "2026-03-18",
+      "amount": -966.79,
+      "merchant": "EDELWEISSHUETTE",
+      "category": "Restaurants & Bars"
+    },
+    {
+      "date": "2026-03-18",
+      "amount": -2060.79,
+      "merchant": "Kreischberg",
+      "category": "Entertainment"
+    },
+    {
+      "date": "2026-03-20",
+      "amount": -600,
+      "merchant": "Bis skolka",
+      "category": "Childcare"
+    },
+    {
+      "date": "2026-03-17",
+      "amount": -610.07,
+      "merchant": "Kreischberg",
+      "category": "Entertainment"
+    },
+    {
+      "date": "2026-03-17",
+      "amount": -1550.61,
+      "merchant": "Kreischberg",
+      "category": "Entertainment"
+    },
+    {
+      "date": "2026-03-19",
+      "amount": -1531,
+      "merchant": "NN",
+      "category": "Insurance"
+    },
+    {
+      "date": "2026-03-16",
+      "amount": -254.2,
+      "merchant": "Revolut",
+      "category": "Other"
+    },
+    {
+      "date": "2026-03-16",
+      "amount": -622.78,
+      "merchant": "Kreischberg",
+      "category": "Entertainment"
+    },
+    {
+      "date": "2026-03-16",
+      "amount": -1474.35,
+      "merchant": "Kreischberg",
+      "category": "Entertainment"
+    },
+    {
+      "date": "2026-03-16",
+      "amount": -1758.54,
+      "merchant": "BILLA",
+      "category": "Groceries"
+    },
+    {
+      "date": "2026-03-16",
+      "amount": -1982.74,
+      "merchant": "F. Leitner",
+      "category": "Fuel"
+    },
+    {
+      "date": "2026-03-18",
+      "amount": -1000,
+      "merchant": "elektrika deltagreen",
+      "category": "Utilities"
+    },
+    {
+      "date": "2026-03-18",
+      "amount": -1440,
+      "merchant": "MND",
+      "category": "Utilities"
+    },
+    {
+      "date": "2026-03-15",
+      "amount": -203.11,
+      "merchant": "INTERSPORT",
+      "category": "Shopping"
+    },
+    {
+      "date": "2026-03-15",
+      "amount": -827.45,
+      "merchant": "Restaurant EAGLE",
+      "category": "Restaurants & Bars"
+    },
+    {
+      "date": "2026-03-15",
+      "amount": -2745.45,
+      "merchant": "Kreischberg",
+      "category": "Entertainment"
+    },
+    {
+      "date": "2026-03-14",
+      "amount": -3299.37,
+      "merchant": "SPAR",
+      "category": "Groceries"
+    },
+    {
+      "date": "2026-03-17",
+      "amount": -500,
+      "merchant": "Vodovody a kanalizace Břeclav",
+      "category": "Utilities"
+    },
+    {
+      "date": "2026-03-17",
+      "amount": -300,
+      "merchant": "Generali penzijní společnost",
+      "category": "Savings & Pension"
+    },
+    {
+      "date": "2026-03-16",
+      "amount": -28130,
+      "merchant": "Hypo splatka",
+      "category": "Housing"
+    },
+    {
+      "date": "2026-03-16",
+      "amount": -675,
+      "merchant": "MATEŘSKÁ ŠKOLA MIKUL",
+      "category": "Childcare"
+    },
+    {
+      "date": "2026-03-13",
+      "amount": -99,
+      "merchant": "KOVO PROKEŠ",
+      "category": "Shopping"
+    },
+    {
+      "date": "2026-03-13",
+      "amount": -338,
+      "merchant": "Bistro Drogérka",
+      "category": "Restaurants & Bars"
+    },
+    {
+      "date": "2026-03-13",
+      "amount": -693,
+      "merchant": "elektrika deltagreen",
+      "category": "Utilities"
+    },
+    {
+      "date": "2026-03-12",
+      "amount": -150,
+      "merchant": "Lime",
+      "category": "Transport"
+    },
+    {
+      "date": "2026-03-11",
+      "amount": -50,
+      "merchant": "NYX*AZWASHsro",
+      "category": "Other"
+    },
+    {
+      "date": "2026-03-11",
+      "amount": -1939.68,
+      "merchant": "Tesco",
+      "category": "Groceries"
+    },
+    {
+      "date": "2026-03-10",
+      "amount": -924.17,
+      "merchant": "Lidl",
+      "category": "Groceries"
+    },
+    {
+      "date": "2026-03-09",
+      "amount": -130,
+      "merchant": "YACHTCLUB DYJE",
+      "category": "Entertainment"
+    },
+    {
+      "date": "2026-03-09",
+      "amount": -390,
+      "merchant": "KOREK Mikulov",
+      "category": "Restaurants & Bars"
+    },
+    {
+      "date": "2026-03-08",
+      "amount": -2000,
+      "merchant": "ATM",
+      "category": "ATM & Cash"
+    },
+    {
+      "date": "2026-03-07",
+      "amount": -88.27,
+      "merchant": "SPAR",
+      "category": "Groceries"
+    },
+    {
+      "date": "2026-03-07",
+      "amount": -1320.22,
+      "merchant": "SPAR",
+      "category": "Groceries"
+    },
+    {
+      "date": "2026-03-08",
+      "amount": -85,
+      "merchant": "ORLEN",
+      "category": "Fuel"
+    },
+    {
+      "date": "2026-03-08",
+      "amount": -100,
+      "merchant": "FIGURA",
+      "category": "Restaurants & Bars"
+    },
+    {
+      "date": "2026-03-08",
+      "amount": -161,
+      "merchant": "MOL",
+      "category": "Fuel"
+    },
+    {
+      "date": "2026-03-08",
+      "amount": -706.85,
+      "merchant": "Květiny Flamengo",
+      "category": "Shopping"
+    },
+    {
+      "date": "2026-03-08",
+      "amount": -1551,
+      "merchant": "ČS SILMET",
+      "category": "Fuel"
+    },
+    {
+      "date": "2026-03-05",
+      "amount": -197.82,
+      "merchant": "Panoramarestaurant W11",
+      "category": "Restaurants & Bars"
+    },
+    {
+      "date": "2026-03-06",
+      "amount": -338,
+      "merchant": "Bistro Drogérka",
+      "category": "Restaurants & Bars"
+    },
+    {
+      "date": "2026-03-05",
+      "amount": -2691.36,
+      "merchant": "Rohlik.cz",
+      "category": "Groceries"
+    },
+    {
+      "date": "2026-03-05",
+      "amount": -202.89,
+      "merchant": "Friedrichhutte",
+      "category": "Restaurants & Bars"
+    },
+    {
+      "date": "2026-03-05",
+      "amount": -258.69,
+      "merchant": "McDonald's",
+      "category": "Restaurants & Bars"
+    },
+    {
+      "date": "2026-03-05",
+      "amount": -540.71,
+      "merchant": "Hotelbetr Herlinde",
+      "category": "Entertainment"
+    },
+    {
+      "date": "2026-03-05",
+      "amount": -1711.9,
+      "merchant": "MITTELSTATION",
+      "category": "Entertainment"
+    },
+    {
+      "date": "2026-03-04",
+      "amount": -350,
+      "merchant": "mujkaktus.cz",
+      "category": "Shopping"
+    },
+    {
+      "date": "2026-03-04",
+      "amount": -378,
+      "merchant": "Bistro Drogérka",
+      "category": "Restaurants & Bars"
+    },
+    {
+      "date": "2026-03-04",
+      "amount": -699,
+      "merchant": "SPORTISIMO",
+      "category": "Shopping"
+    },
+    {
+      "date": "2026-03-04",
+      "amount": -1200.1,
+      "merchant": "Tesco",
+      "category": "Groceries"
+    },
+    {
+      "date": "2026-03-04",
+      "amount": 249,
+      "merchant": "Sportisimo Breclav",
+      "category": "Shopping"
+    },
+    {
+      "date": "2026-03-04",
+      "amount": -7046,
+      "merchant": "Vodovody a kanalizace Břeclav",
+      "category": "Utilities"
+    },
+    {
+      "date": "2026-03-04",
+      "amount": 90000,
+      "merchant": "Buchta, Marián",
+      "category": "Investments & Transfers"
+    },
+    {
+      "date": "2026-03-02",
+      "amount": -223.01,
+      "merchant": "COOP",
+      "category": "Groceries"
+    },
+    {
+      "date": "2026-03-01",
+      "amount": -239,
+      "merchant": "Sweet.tv",
+      "category": "Subscriptions"
+    },
+    {
+      "date": "2026-02-27",
+      "amount": -20,
+      "merchant": "AUTOMYCKA MIKULOV",
+      "category": "Other"
+    },
+    {
+      "date": "2026-02-27",
+      "amount": -80,
+      "merchant": "AUTOMYCKA MIKULOV",
+      "category": "Other"
+    },
+    {
+      "date": "2026-02-27",
+      "amount": -2463.58,
+      "merchant": "Rohlik.cz",
+      "category": "Groceries"
+    },
+    {
+      "date": "2026-02-27",
+      "amount": -441,
+      "merchant": "Temu",
+      "category": "Shopping"
+    },
+    {
+      "date": "2026-02-27",
+      "amount": -407.5,
+      "merchant": "COOP",
+      "category": "Groceries"
+    },
+    {
+      "date": "2026-02-27",
+      "amount": -527,
+      "merchant": "Bistro Drogérka",
+      "category": "Restaurants & Bars"
+    },
+    {
+      "date": "2026-02-28",
+      "amount": -39,
+      "merchant": "Poplatek RB směnárna",
+      "category": "Other"
+    },
+    {
+      "date": "2026-02-28",
+      "amount": -89,
+      "merchant": "Pojištění ke kartě",
+      "category": "Insurance"
+    },
+    {
+      "date": "2026-02-25",
+      "amount": -309.93,
+      "merchant": "McDonald's",
+      "category": "Restaurants & Bars"
+    },
+    {
+      "date": "2026-02-25",
+      "amount": -1083.5,
+      "merchant": "Freizeitbetriebe Veitsch",
+      "category": "Entertainment"
+    },
+    {
+      "date": "2026-02-25",
+      "amount": -242.8,
+      "merchant": "ORLEN",
+      "category": "Fuel"
+    },
+    {
+      "date": "2026-02-26",
+      "amount": 41.23,
+      "merchant": "Delta Green s.r.o.",
+      "category": "Investments & Transfers"
+    },
+    {
+      "date": "2026-02-25",
+      "amount": -199,
+      "merchant": "Rohlik.cz",
+      "category": "Groceries"
+    },
+    {
+      "date": "2026-02-24",
+      "amount": -338,
+      "merchant": "Bistro Drogérka",
+      "category": "Restaurants & Bars"
+    },
+    {
+      "date": "2026-02-24",
+      "amount": -469,
+      "merchant": "Teta dekuje za nakup",
+      "category": "Groceries"
+    },
+    {
+      "date": "2026-02-23",
+      "amount": -33341.68,
+      "merchant": "Villa for You",
+      "category": "Entertainment"
+    },
+    {
+      "date": "2026-02-25",
+      "amount": 10000,
+      "merchant": "Buchta Marián",
+      "category": "Investments & Transfers"
+    },
+    {
+      "date": "2026-02-22",
+      "amount": -460,
+      "merchant": "HERNA JERABINKA",
+      "category": "Entertainment"
+    },
+    {
+      "date": "2026-02-21",
+      "amount": -5121.63,
+      "merchant": "Lidl",
+      "category": "Groceries"
+    },
+    {
+      "date": "2026-02-24",
+      "amount": -1496,
+      "merchant": "Česká správa sociálního zabezpečení",
+      "category": "Insurance"
+    },
+    {
+      "date": "2026-02-24",
+      "amount": -300,
+      "merchant": "Generali penzijní společnost",
+      "category": "Savings & Pension"
+    },
+    {
+      "date": "2026-02-19",
+      "amount": -163.85,
+      "merchant": "TAMBURI ST. ANTON",
+      "category": "Restaurants & Bars"
+    },
+    {
+      "date": "2026-02-19",
+      "amount": -299.97,
+      "merchant": "Chutney",
+      "category": "Restaurants & Bars"
+    },
+    {
+      "date": "2026-02-19",
+      "amount": -125.79,
+      "merchant": "Nordsee",
+      "category": "Restaurants & Bars"
+    },
+    {
+      "date": "2026-02-19",
+      "amount": -178.98,
+      "merchant": "ABBRestGampenSB",
+      "category": "Restaurants & Bars"
+    },
+    {
+      "date": "2026-02-19",
+      "amount": -796.57,
+      "merchant": "ABBRestGampenSB",
+      "category": "Restaurants & Bars"
+    },
+    {
+      "date": "2026-02-19",
+      "amount": -5434.8,
+      "merchant": "ÖBB",
+      "category": "Transport"
+    },
+    {
+      "date": "2026-02-20",
+      "amount": 9870,
+      "merchant": "Erik Vinkler",
+      "category": "Investments & Transfers"
+    },
+    {
+      "date": "2026-02-20",
+      "amount": -2904,
+      "merchant": "FAKTURUJEME VAM",
+      "category": "Other"
+    },
+    {
+      "date": "2026-02-18",
+      "amount": -579.78,
+      "merchant": "SUMUP *THE TAXI",
+      "category": "Transport"
+    },
+    {
+      "date": "2026-02-18",
+      "amount": -4209.7,
+      "merchant": "ABBTicketRendlbahn",
+      "category": "Entertainment"
+    },
+    {
+      "date": "2026-02-18",
+      "amount": -5097.02,
+      "merchant": "Rodelstall",
+      "category": "Entertainment"
+    },
+    {
+      "date": "2026-02-20",
+      "amount": -600,
+      "merchant": "Bis skolka",
+      "category": "Childcare"
+    },
+    {
+      "date": "2026-02-17",
+      "amount": -110.9,
+      "merchant": "Burger King",
+      "category": "Restaurants & Bars"
+    },
+    {
+      "date": "2026-02-17",
+      "amount": -183.74,
+      "merchant": "Nordsee",
+      "category": "Restaurants & Bars"
+    },
+    {
+      "date": "2026-02-17",
+      "amount": -6046.63,
+      "merchant": "ÖBB",
+      "category": "Transport"
+    },
+    {
+      "date": "2026-02-17",
+      "amount": -10295.65,
+      "merchant": "Booking.com",
+      "category": "Entertainment"
+    },
+    {
+      "date": "2026-02-16",
+      "amount": -1698.55,
+      "merchant": "VOMS",
+      "category": "Fuel"
+    },
+    {
+      "date": "2026-02-17",
+      "amount": -74,
+      "merchant": "Pont",
+      "category": "Other"
+    },
+    {
+      "date": "2026-02-17",
+      "amount": -223,
+      "merchant": "idos.cz",
+      "category": "Transport"
+    }
+  ],
+  "subscriptions": [
+    {
+      "merchant": "Sweet.tv",
+      "amount": 239,
+      "frequency": "monthly",
+      "lastSeen": "2026-03-01",
+      "totalSpent": 239
+    }
+  ],
+  "regularPayments": [
+    {
+      "merchant": "Hypo splatka",
+      "amount": 28130,
+      "label": "Mortgage",
+      "frequency": "monthly",
+      "lastSeen": "2026-03-16",
+      "totalSpent": 28130
+    },
+    {
+      "merchant": "Česká správa sociálního zabezpečení",
+      "amount": 1496,
+      "label": "Social Security",
+      "frequency": "monthly",
+      "lastSeen": "2026-03-24",
+      "totalSpent": 2992
+    },
+    {
+      "merchant": "Bis skolka",
+      "amount": 600,
+      "label": "Childcare",
+      "frequency": "monthly",
+      "lastSeen": "2026-03-20",
+      "totalSpent": 1200
+    },
+    {
+      "merchant": "NN",
+      "amount": 1531,
+      "label": "Life Insurance",
+      "frequency": "monthly",
+      "lastSeen": "2026-03-19",
+      "totalSpent": 1531
+    },
+    {
+      "merchant": "MND",
+      "amount": 1440,
+      "label": "Gas",
+      "frequency": "monthly",
+      "lastSeen": "2026-03-18",
+      "totalSpent": 1440
+    },
+    {
+      "merchant": "Vodovody a kanalizace Břeclav",
+      "amount": 500,
+      "label": "Water",
+      "frequency": "monthly",
+      "lastSeen": "2026-03-17",
+      "totalSpent": 500
+    },
+    {
+      "merchant": "elektrika deltagreen",
+      "amount": 1000,
+      "label": "Electricity",
+      "frequency": "monthly",
+      "lastSeen": "2026-03-18",
+      "totalSpent": 1693
+    }
+  ],
+  "investments": [
+    {
+      "merchant": "Generali penzijní společnost",
+      "amount": 300,
+      "label": "Pension",
+      "lastSeen": "2026-03-24",
+      "totalSpent": 900
+    }
+  ],
+  "transfers": [
+    {
+      "date": "2026-03-25",
+      "amount": 10000,
+      "fromAccount": "4240109003/0800",
+      "toAccount": "1016687745/5500",
+      "note": "Internal transfer"
+    },
+    {
+      "date": "2026-03-04",
+      "amount": 90000,
+      "fromAccount": "2000720082/2010",
+      "toAccount": "1016687745/5500",
+      "note": "Internal transfer"
+    },
+    {
+      "date": "2026-02-25",
+      "amount": 10000,
+      "fromAccount": "4240109003/0800",
+      "toAccount": "1016687745/5500",
+      "note": "Internal transfer"
+    }
+  ],
+  "categories": [
+    {
+      "category": "Housing",
+      "total": 28130,
+      "count": 1
+    },
+    {
+      "category": "Groceries",
+      "total": 21547.95,
+      "count": 17
+    },
+    {
+      "category": "Restaurants & Bars",
+      "total": 13064.72,
+      "count": 25
+    },
+    {
+      "category": "Entertainment",
+      "total": 73521.89,
+      "count": 14
+    },
+    {
+      "category": "Transport",
+      "total": 17531.43,
+      "count": 12
+    },
+    {
+      "category": "Fuel",
+      "total": 4586,
+      "count": 6
+    },
+    {
+      "category": "Shopping",
+      "total": 6794.11,
+      "count": 11
+    },
+    {
+      "category": "Utilities",
+      "total": 10679,
+      "count": 5
+    },
+    {
+      "category": "Insurance",
+      "total": 4123,
+      "count": 4
+    },
+    {
+      "category": "Savings & Pension",
+      "total": 900,
+      "count": 3
+    },
+    {
+      "category": "Childcare",
+      "total": 2475,
+      "count": 3
+    },
+    {
+      "category": "Subscriptions",
+      "total": 239,
+      "count": 1
+    },
+    {
+      "category": "ATM & Cash",
+      "total": 4500,
+      "count": 2
+    },
+    {
+      "category": "Other",
+      "total": 3526,
+      "count": 8
+    }
+  ],
+  "monthlyTotals": [
+    {
+      "month": "2026-02",
+      "total": 95439.21
+    },
+    {
+      "month": "2026-03",
+      "total": 90698.74
+    }
+  ],
+  "insights": [
+    "Significant skiing/winter sports expenses with 73,521.89 CZK spent on entertainment including multiple ski passes at Kreischberg and hotel bookings",
+    "Large villa rental expense of 33,341.68 CZK from Villa for You B.V. in February represents a major travel expense",
+    "Regular mortgage payment of 28,130.00 CZK monthly represents the largest fixed expense",
+    "Frequent dining out with 13,064.72 CZK spent at restaurants and bars across Austria and Czech Republic",
+    "Grocery shopping primarily through Rohlik.cz, Lidl, SPAR and other retailers totaling 21,547.95 CZK",
+    "Multiple large income transfers including 90,000 CZK in March suggesting business or investment income"
+  ],
+  "totalSpend": 277117.95,
+  "period": "Feb 2026 – Mar 2026",
+  "_meta": {
+    "provider": "claude",
+    "displayName": "Claude Sonnet 4",
+    "costPer1kAnalyses": 86
+  }
+}

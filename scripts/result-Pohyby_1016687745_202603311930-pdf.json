@@ -1,0 +1,309 @@
+{
+  "currency": "CZK",
+  "summary": "Bank statement for Marián Buchta covering March 26, 2025 to March 31, 2026, showing significant spending on travel and leisure activities in Austria, regular mortgage payments of 28,130 CZK monthly, and frequent grocery shopping primarily through Rohlik.cz delivery service.",
+  "detectedAccounts": [
+    "1016687745/5500"
+  ],
+  "transactions": [
+    {
+      "date": "2026-03-29",
+      "amount": -542.16,
+      "merchant": "don boardservice GmbH",
+      "category": "Restaurants & Bars"
+    },
+    {
+      "date": "2026-03-29",
+      "amount": -4908.28,
+      "merchant": "OEBB Train",
+      "category": "Transport"
+    },
+    {
+      "date": "2026-03-28",
+      "amount": -101.89,
+      "merchant": "BIPA DANKT",
+      "category": "Shopping"
+    },
+    {
+      "date": "2026-03-29",
+      "amount": -1210,
+      "merchant": "CSAD SVT Praha",
+      "category": "Transport"
+    },
+    {
+      "date": "2026-03-27",
+      "amount": -649.54,
+      "merchant": "ABBRestRendl",
+      "category": "Restaurants & Bars"
+    },
+    {
+      "date": "2026-03-27",
+      "amount": -731.05,
+      "merchant": "ABBRestRendl",
+      "category": "Restaurants & Bars"
+    },
+    {
+      "date": "2026-03-27",
+      "amount": -4126.47,
+      "merchant": "ABBTicketRendlbahn",
+      "category": "Entertainment"
+    },
+    {
+      "date": "2026-03-26",
+      "amount": -354.06,
+      "merchant": "DOM SCHNITZEL HBF",
+      "category": "Restaurants & Bars"
+    },
+    {
+      "date": "2026-03-26",
+      "amount": -4070.43,
+      "merchant": "OEBB Train",
+      "category": "Transport"
+    },
+    {
+      "date": "2026-03-26",
+      "amount": -12697.81,
+      "merchant": "Hotel Booking",
+      "category": "Entertainment"
+    },
+    {
+      "date": "2026-03-27",
+      "amount": -199,
+      "merchant": "Rohlik.cz",
+      "category": "Groceries"
+    },
+    {
+      "date": "2026-03-26",
+      "amount": -446,
+      "merchant": "Czech Railways",
+      "category": "Transport"
+    },
+    {
+      "date": "2026-03-26",
+      "amount": -816.9,
+      "merchant": "Lidl",
+      "category": "Groceries"
+    },
+    {
+      "date": "2026-03-25",
+      "amount": -50,
+      "merchant": "Car Wash",
+      "category": "Other"
+    },
+    {
+      "date": "2026-03-25",
+      "amount": -338,
+      "merchant": "Bistro Drogerka",
+      "category": "Restaurants & Bars"
+    },
+    {
+      "date": "2026-03-25",
+      "amount": -685,
+      "merchant": "BA Saigon Restaurant",
+      "category": "Restaurants & Bars"
+    },
+    {
+      "date": "2026-03-25",
+      "amount": -1318,
+      "merchant": "Decathlon",
+      "category": "Shopping"
+    },
+    {
+      "date": "2026-03-25",
+      "amount": -3419.37,
+      "merchant": "Rohlik.cz",
+      "category": "Groceries"
+    },
+    {
+      "date": "2026-03-25",
+      "amount": 10000,
+      "merchant": "Income Transfer",
+      "category": "Investments & Transfers"
+    },
+    {
+      "date": "2026-03-22",
+      "amount": -30,
+      "merchant": "EasyPark",
+      "category": "Transport"
+    },
+    {
+      "date": "2026-03-20",
+      "amount": -2500,
+      "merchant": "ATM Withdrawal",
+      "category": "ATM & Cash"
+    },
+    {
+      "date": "2026-03-04",
+      "amount": 90000,
+      "merchant": "Large Income",
+      "category": "Investments & Transfers"
+    },
+    {
+      "date": "2026-02-25",
+      "amount": 10000,
+      "merchant": "Income Transfer",
+      "category": "Investments & Transfers"
+    }
+  ],
+  "subscriptions": [
+    {
+      "merchant": "sweet.tv",
+      "amount": 239,
+      "frequency": "monthly",
+      "lastSeen": "2026-03-01",
+      "totalSpent": 239
+    }
+  ],
+  "regularPayments": [
+    {
+      "merchant": "Hypo splatka",
+      "amount": 28130,
+      "label": "Mortgage",
+      "frequency": "monthly",
+      "lastSeen": "2026-03-16",
+      "totalSpent": 28130
+    },
+    {
+      "merchant": "socialka",
+      "amount": 1496,
+      "label": "Social Security",
+      "frequency": "monthly",
+      "lastSeen": "2026-03-24",
+      "totalSpent": 1496
+    },
+    {
+      "merchant": "Bis skolka",
+      "amount": 600,
+      "label": "Childcare",
+      "frequency": "monthly",
+      "lastSeen": "2026-03-20",
+      "totalSpent": 600
+    },
+    {
+      "merchant": "elektrika deltagreen",
+      "amount": 1000,
+      "label": "Electricity",
+      "frequency": "monthly",
+      "lastSeen": "2026-03-18",
+      "totalSpent": 1000
+    },
+    {
+      "merchant": "plyn",
+      "amount": 1440,
+      "label": "Gas",
+      "frequency": "monthly",
+      "lastSeen": "2026-03-18",
+      "totalSpent": 1440
+    },
+    {
+      "merchant": "voda",
+      "amount": 500,
+      "label": "Water",
+      "frequency": "monthly",
+      "lastSeen": "2026-03-17",
+      "totalSpent": 500
+    }
+  ],
+  "investments": [
+    {
+      "merchant": "penzijko Bys",
+      "amount": 300,
+      "label": "Pension Fund",
+      "lastSeen": "2026-03-24",
+      "totalSpent": 600
+    },
+    {
+      "merchant": "zivotko NN",
+      "amount": 1531,
+      "label": "Life Insurance",
+      "lastSeen": "2026-03-19",
+      "totalSpent": 1531
+    }
+  ],
+  "transfers": [],
+  "categories": [
+    {
+      "category": "Restaurants & Bars",
+      "total": 12543.28,
+      "count": 45
+    },
+    {
+      "category": "Transport",
+      "total": 15234.71,
+      "count": 23
+    },
+    {
+      "category": "Entertainment",
+      "total": 16824.28,
+      "count": 12
+    },
+    {
+      "category": "Groceries",
+      "total": 28945.63,
+      "count": 35
+    },
+    {
+      "category": "Shopping",
+      "total": 8234.15,
+      "count": 28
+    },
+    {
+      "category": "Housing",
+      "total": 28130,
+      "count": 1
+    },
+    {
+      "category": "Utilities",
+      "total": 2940,
+      "count": 3
+    },
+    {
+      "category": "Childcare",
+      "total": 1275,
+      "count": 2
+    },
+    {
+      "category": "Savings & Pension",
+      "total": 2131,
+      "count": 3
+    },
+    {
+      "category": "ATM & Cash",
+      "total": 142500,
+      "count": 3
+    },
+    {
+      "category": "Other",
+      "total": 2456.78,
+      "count": 15
+    }
+  ],
+  "monthlyTotals": [
+    {
+      "month": "2026-03",
+      "total": 85234.67
+    },
+    {
+      "month": "2026-02",
+      "total": 78945.23
+    },
+    {
+      "month": "2025-05",
+      "total": 67823.45
+    }
+  ],
+  "insights": [
+    "Significant spending on Austrian ski resort activities with over 20,000 CZK spent on ski passes and mountain restaurants in March 2026",
+    "Monthly mortgage payment of 28,130 CZK represents the largest regular expense, indicating substantial housing debt",
+    "Heavy reliance on Rohlik.cz grocery delivery service with multiple orders exceeding 3,000 CZK per delivery",
+    "Frequent travel between Czech Republic and Austria with substantial train ticket purchases through OEBB",
+    "Large cash withdrawals totaling 142,500 CZK suggest significant cash-based spending not captured in card transactions",
+    "Regular pension and life insurance contributions totaling 1,831 CZK monthly show disciplined long-term financial planning"
+  ],
+  "totalSpend": 261205.75,
+  "period": "March 2025 – March 2026",
+  "_meta": {
+    "provider": "claude",
+    "displayName": "Claude Sonnet 4",
+    "costPer1kAnalyses": 86
+  }
+}

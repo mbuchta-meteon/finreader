@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+
+# Next.js
+.next/
+out/
+
+# Environment variables - NEVER commit these
+.env.local
+.env*.local
+
+# Database - local only, not for production
+data/
+
+# Dev server log
+dev_server.log
+
+# Build artifacts
+tsconfig.tsbuildinfo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# MCP server log
+mcp_server/*.log
+
+# Test scripts (keep in crypto-fond, not in this repo)
+check-error.js
+scripts/clear-cache.js

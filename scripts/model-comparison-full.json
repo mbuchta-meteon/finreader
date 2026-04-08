@@ -1,0 +1,72 @@
+[
+  {
+    "label": "Claude Haiku 4.5",
+    "inputTokens": 8231,
+    "outputTokens": 4096,
+    "elapsed": 24.4,
+    "quality": "JSON_ERROR",
+    "txCount": 0,
+    "catCount": 0,
+    "cost": 0.0229688,
+    "inputPrice": 0.8,
+    "outputPrice": 4
+  },
+  {
+    "label": "Claude Sonnet 4",
+    "inputTokens": 8231,
+    "outputTokens": 4093,
+    "elapsed": 49.6,
+    "quality": "GOOD",
+    "txCount": 91,
+    "catCount": 17,
+    "cost": 0.086088,
+    "inputPrice": 3,
+    "outputPrice": 15
+  },
+  {
+    "label": "Claude Opus 4 (estimated)",
+    "inputTokens": 8190,
+    "outputTokens": 3000,
+    "cost": 0.34785,
+    "quality": "EXCELLENT",
+    "txCount": "~91",
+    "elapsed": "~90s",
+    "estimated": true
+  },
+  {
+    "label": "GPT-4o (estimated)",
+    "inputTokens": 8190,
+    "outputTokens": 3000,
+    "cost": 0.050475,
+    "quality": "GOOD",
+    "elapsed": "~15s",
+    "estimated": true
+  },
+  {
+    "label": "GPT-4o mini (estimated)",
+    "inputTokens": 8190,
+    "outputTokens": 3000,
+    "cost": 0.0030285,
+    "quality": "PARTIAL",
+    "elapsed": "~8s",
+    "estimated": true
+  },
+  {
+    "label": "Gemini 1.5 Pro (est.)",
+    "inputTokens": 8190,
+    "outputTokens": 3000,
+    "cost": 0.0252375,
+    "quality": "GOOD",
+    "elapsed": "~10s",
+    "estimated": true
+  },
+  {
+    "label": "Gemini 2.0 Flash (est.)",
+    "inputTokens": 8190,
+    "outputTokens": 3000,
+    "cost": 0.002019,
+    "quality": "GOOD",
+    "elapsed": "~5s",
+    "estimated": true
+  }
+]
