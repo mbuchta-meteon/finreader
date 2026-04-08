@@ -1,0 +1,6 @@
+# Ignore local data and dev files from Vercel deployments
+data/
+dev_server.log
+mcp_server/
+*.log
+.env.local
