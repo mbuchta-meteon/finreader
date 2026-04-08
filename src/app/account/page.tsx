@@ -4,6 +4,44 @@ import { useState, useEffect } from 'react'
 import { useSession, signOut } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 
+function UpgradeButton() {
+  const [loading, setLoading] = useState(false)
+  const [error,   setError]   = useState('')
+
+  async function handleUpgrade() {
+    setLoading(true)
+    setError('')
+    try {
+      const res  = await fetch('/api/stripe/checkout', { method: 'POST' })
+      const data = await res.json()
+      if (data.url) {
+        window.location.href = data.url
+      } else {
+        setError(data.error || 'Something went wrong')
+        setLoading(false)
+      }
+    } catch {
+      setError('Failed to start checkout')
+      setLoading(false)
+    }
+  }
+
+  return (
+    <div>
+      <button onClick={handleUpgrade} disabled={loading} style={{
+        padding:'10px 24px', borderRadius:10, background:'#6366f1',
+        color:'#fff', border:'none', cursor: loading ? 'wait' : 'pointer', fontWeight:600,
+      }}>
+        {loading ? 'Redirecting to payment...' : 'Upgrade to Pro — €5/month'}
+      </button>
+      {error && <p style={{ color:'#f87171', fontSize:13, marginTop:8 }}>{error}</p>}
+      <p style={{ color:'#475569', fontSize:12, marginTop:8 }}>
+        Secure payment via Stripe · Cancel anytime
+      </p>
+    </div>
+  )
+}
+
 interface Analysis {
   id: string
   fileName: string
@@ -21,6 +59,7 @@ export default function AccountPage() {
   const [optIn,       setOptIn]       = useState(false)
   const [savingOptIn, setSavingOptIn] = useState(false)
   const [deleteMsg,   setDeleteMsg]   = useState('')
+  const [stripeMsg,   setStripeMsg]   = useState('')
 
   useEffect(() => {
     if (status === 'unauthenticated') router.push('/auth/signin')
@@ -29,6 +68,12 @@ export default function AccountPage() {
   useEffect(() => {
     if (storageOptIn !== undefined) setOptIn(storageOptIn)
   }, [storageOptIn])
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    if (params.get('upgraded') === 'true') setStripeMsg('🎉 Welcome to Pro! Your account has been upgraded.')
+    if (params.get('cancelled') === 'true') setStripeMsg('Payment cancelled — you can upgrade anytime.')
+  }, [])
 
   useEffect(() => {
     if (isPro) {
@@ -76,6 +121,12 @@ export default function AccountPage() {
           {isPro ? '⭐ Pro' : '🆓 Free'}
         </span>
       </p>
+
+      {stripeMsg && (
+        <div style={{ marginBottom:24, padding:'12px 20px', background: stripeMsg.startsWith('🎉') ? 'rgba(99,102,241,0.1)' : 'rgba(100,116,139,0.1)', border:`1px solid ${stripeMsg.startsWith('🎉') ? '#6366f1' : '#475569'}`, borderRadius:12 }}>
+          <p style={{ color: stripeMsg.startsWith('🎉') ? '#a5b4fc' : '#94a3b8', fontSize:14 }}>{stripeMsg}</p>
+        </div>
+      )}
 
       {/* Storage opt-in — Pro only */}
       {isPro && (
@@ -143,10 +194,7 @@ export default function AccountPage() {
           <p style={{ color:'#94a3b8', marginBottom:16 }}>
             Get unlimited analyses, multi-file upload, the Better AI model, and analysis history for €5/month.
           </p>
-          <button style={{ padding:'10px 24px', borderRadius:10, background:'#6366f1', color:'#fff', border:'none', cursor:'pointer', fontWeight:600 }}>
-            Upgrade to Pro — €5/month
-          </button>
-          <p style={{ color:'#475569', fontSize:12, marginTop:8 }}>Stripe payment coming soon</p>
+          <UpgradeButton />
         </Section>
       )}
 
