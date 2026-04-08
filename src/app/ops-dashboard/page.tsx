@@ -18,6 +18,14 @@ interface Stats {
   recentUsers: User[]
 }
 
+interface StripeConfig {
+  stripeConfigured: boolean
+  stripePriceId: string | null
+  stripeMode: string
+  priceAmount: string
+  priceCurrency: string
+}
+
 interface User {
   id: string
   email: string
@@ -30,6 +38,7 @@ export default function AdminPage() {
   const [secret,  setSecret]  = useState('')
   const [authed,  setAuthed]  = useState(false)
   const [stats,   setStats]   = useState<Stats | null>(null)
+  const [stripe,  setStripe]  = useState<StripeConfig | null>(null)
   const [error,   setError]   = useState('')
   const [loading, setLoading] = useState(false)
   const [roleMsg, setRoleMsg] = useState('')
@@ -39,14 +48,23 @@ export default function AdminPage() {
     setLoading(true)
     setError('')
     try {
-      const res  = await fetch('/api/admin/stats', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ secret }),
-      })
-      const data = await res.json()
-      if (!res.ok) throw new Error(data.error || 'Unauthorized')
-      setStats(data)
+      const [statsRes, stripeRes] = await Promise.all([
+        fetch('/api/admin/stats', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ secret }),
+        }),
+        fetch('/api/admin/stripe-config', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ secret }),
+        }),
+      ])
+      const statsData  = await statsRes.json()
+      const stripeData = await stripeRes.json()
+      if (!statsRes.ok) throw new Error(statsData.error || 'Unauthorized')
+      setStats(statsData)
+      setStripe(stripeData)
       setAuthed(true)
     } catch (e: any) {
       setError(e.message)
@@ -56,13 +74,20 @@ export default function AdminPage() {
   }
 
   async function refreshStats() {
-    const res  = await fetch('/api/admin/stats', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ secret }),
-    })
-    const data = await res.json()
-    if (res.ok) setStats(data)
+    const [statsRes, stripeRes] = await Promise.all([
+      fetch('/api/admin/stats', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ secret }),
+      }),
+      fetch('/api/admin/stripe-config', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ secret }),
+      }),
+    ])
+    if (statsRes.ok)  setStats(await statsRes.json())
+    if (stripeRes.ok) setStripe(await stripeRes.json())
   }
 
   async function setRole(userId: string, role: string) {
@@ -270,6 +295,45 @@ export default function AdminPage() {
                   })}
                 </div>
               </div>
+            )}
+          </div>
+
+          {/* Stripe config */}
+          <div style={{ background:'#1e293b', border:'1px solid #334155', borderRadius:16, padding:24, marginBottom:24 }}>
+            <h2 style={{ color:'#fff', fontSize:17, fontWeight:600, marginBottom:16 }}>Stripe payments</h2>
+            {stripe ? (
+              <div style={{ display:'grid', gridTemplateColumns:'repeat(2, 1fr)', gap:16 }}>
+                <div style={{ padding:'16px 20px', background:'rgba(15,23,42,0.6)', borderRadius:10 }}>
+                  <p style={{ color:'#64748b', fontSize:12, marginBottom:6 }}>Status</p>
+                  <p style={{ fontSize:16, fontWeight:600, color: stripe.stripeConfigured ? '#10b981' : '#ef4444' }}>
+                    {stripe.stripeConfigured ? 'Configured' : 'Not configured'}
+                  </p>
+                  {stripe.stripeConfigured && (
+                    <p style={{ color:'#64748b', fontSize:11, marginTop:4 }}>
+                      Mode: <span style={{ color: stripe.stripeMode === 'live' ? '#10b981' : '#f59e0b' }}>{stripe.stripeMode}</span>
+                    </p>
+                  )}
+                </div>
+                <div style={{ padding:'16px 20px', background:'rgba(15,23,42,0.6)', borderRadius:10 }}>
+                  <p style={{ color:'#64748b', fontSize:12, marginBottom:6 }}>Pro subscription price</p>
+                  <p style={{ fontSize:22, fontWeight:700, color:'#fff' }}>
+                    {stripe.priceCurrency === 'EUR' ? '€' : stripe.priceCurrency}{stripe.priceAmount}
+                    <span style={{ color:'#64748b', fontSize:13, fontWeight:400 }}>/month</span>
+                  </p>
+                  {stripe.stripePriceId && (
+                    <p style={{ color:'#475569', fontSize:10, marginTop:4, fontFamily:'monospace' }}>{stripe.stripePriceId}</p>
+                  )}
+                </div>
+                {!stripe.stripeConfigured && (
+                  <div style={{ gridColumn:'1/-1', padding:'12px 16px', background:'rgba(239,68,68,0.1)', border:'1px solid rgba(239,68,68,0.3)', borderRadius:8 }}>
+                    <p style={{ color:'#fca5a5', fontSize:13 }}>
+                      Add STRIPE_SECRET_KEY, STRIPE_PRICE_ID, STRIPE_WEBHOOK_SECRET to Vercel environment variables to enable payments.
+                    </p>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <p style={{ color:'#475569', fontSize:13 }}>Loading...</p>
             )}
           </div>
 

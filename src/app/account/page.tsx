@@ -32,7 +32,7 @@ function UpgradeButton() {
         padding:'10px 24px', borderRadius:10, background:'#6366f1',
         color:'#fff', border:'none', cursor: loading ? 'wait' : 'pointer', fontWeight:600,
       }}>
-        {loading ? 'Redirecting to payment...' : 'Upgrade to Pro — €5/month'}
+        {loading ? 'Redirecting to payment...' : 'Upgrade to Pro — €4/month'}
       </button>
       {error && <p style={{ color:'#f87171', fontSize:13, marginTop:8 }}>{error}</p>}
       <p style={{ color:'#475569', fontSize:12, marginTop:8 }}>
@@ -192,7 +192,7 @@ export default function AccountPage() {
       {!isPro && (
         <Section title="Upgrade to Pro">
           <p style={{ color:'#94a3b8', marginBottom:16 }}>
-            Get unlimited analyses, multi-file upload, the Better AI model, and analysis history for €5/month.
+            Get unlimited analyses, multi-file upload, the Better AI model, and analysis history for €4/month.
           </p>
           <UpgradeButton />
         </Section>
