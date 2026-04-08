@@ -24,9 +24,17 @@ function guessMime(filename: string): string {
   return map[ext] ?? 'application/octet-stream'
 }
 
-function autoSelectProvider(mimeType: string, textLength = 0, isPro = false): ProviderName {
+function autoSelectProvider(mimeType: string, textLength = 0, isPro = false, fileSize = 0): ProviderName {
   if (!isPro) return 'gemini'   // free tier always Standard
-  if (VISION_TYPES.has(mimeType)) return process.env.GEMINI_API_KEY ? 'gemini' : 'haiku'
+
+  // Vision files (PDF / image) — select by file size
+  if (VISION_TYPES.has(mimeType)) {
+    if (fileSize > 2_000_000) return 'claude'   // > 2MB  → Best (Claude Sonnet)
+    if (fileSize > 500_000)   return 'haiku'    // > 500KB → Better (Haiku)
+    return 'gemini'                              // small   → Standard (Gemini)
+  }
+
+  // Text files — select by character count
   if (textLength < 5_000)  return 'gemini'
   if (textLength < 25_000) return 'haiku'
   return 'claude'
@@ -163,18 +171,18 @@ export async function POST(req: NextRequest) {
       if (TEXT_TYPES.has(mime) || /\.(csv|txt)$/i.test(file.name)) {
         const raw  = buffer.toString('utf8')
         const text = mime === 'text/csv' || file.name.endsWith('.csv') ? parseCSV(raw) : raw
-        const resolved = forcedProvider ?? autoSelectProvider(mime, text.length, isPro)
+        const resolved = forcedProvider ?? autoSelectProvider(mime, text.length, isPro, buffer.length)
         autoReason = `text (${(text.length / 1000).toFixed(1)}k chars → ${resolved})`
         results.push(await getProvider(resolved).analyze(text, language))
 
       } else if (VISION_TYPES.has(mime) || /\.(pdf|png|jpe?g|gif|webp|bmp)$/i.test(file.name)) {
-        const resolved = forcedProvider ?? autoSelectProvider(mime, 0, isPro)
+        const resolved = forcedProvider ?? autoSelectProvider(mime, 0, isPro, buffer.length)
         const ai = getProvider(resolved)
         if (!ai.supportsVision) {
           return NextResponse.json({ error: `${ai.displayName} does not support vision` }, { status: 400 })
         }
         const fileData: FileData = { buffer, mimeType: mime, name: file.name }
-        autoReason = `vision (${mime} → ${resolved})`
+        autoReason = `vision (${(buffer.length / 1024).toFixed(0)}KB → ${resolved})`
         results.push(await ai.analyzeFile(fileData, language))
 
       } else {
@@ -192,7 +200,7 @@ export async function POST(req: NextRequest) {
   const merged = mergeResults(results)
 
   // ── Record API usage per model ──────────────────────────────────────────────
-  const usedProvider = forcedProvider ?? autoSelectProvider(files[0].type || guessMime(files[0].name), 0, isPro)
+  const usedProvider = forcedProvider ?? autoSelectProvider(files[0].type || guessMime(files[0].name), 0, isPro, fileBuffers[0].length)
   await recordApiUsage(usedProvider, isPro ? 'pro' : 'free')
 
   // ── Record free usage AFTER successful analysis ─────────────────────────────
@@ -208,12 +216,12 @@ export async function POST(req: NextRequest) {
   if (isPro && userId) {
     const userRow = await getUserById(userId)
     if (userRow?.storageOptIn) {
-      const finalProvider = forcedProvider ?? autoSelectProvider(files[0].type || guessMime(files[0].name), 0, isPro)
+      const finalProvider = forcedProvider ?? autoSelectProvider(files[0].type || guessMime(files[0].name), 0, isPro, fileBuffers[0].length)
       savedId = await saveAnalysis(userId, files.map(f => f.name).join(', '), merged, finalProvider)
     }
   }
 
-  const finalProvider = forcedProvider ?? autoSelectProvider(files[0].type || guessMime(files[0].name), 0, isPro)
+  const finalProvider = forcedProvider ?? autoSelectProvider(files[0].type || guessMime(files[0].name), 0, isPro, fileBuffers[0].length)
 
   return NextResponse.json({
     ...merged,

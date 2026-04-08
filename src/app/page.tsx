@@ -10,8 +10,8 @@ import { getT } from '@/lib/i18n'
 type Stage = 'idle' | 'analyze' | 'done' | 'error'
 
 const PRO_MODELS = [
-  { value: 'auto',   label: '⚡ Standard', badge: 'Fast & efficient' },
-  { value: 'claude', label: '✨ Better',   badge: 'Higher accuracy, slower' },
+  { value: 'auto',   label: '⚡ Auto',    badge: 'Selects best model by file size' },
+  { value: 'claude', label: '✨ Better',  badge: 'Always uses highest accuracy model' },
 ]
 
 declare global {
@@ -137,7 +137,14 @@ export default function Home() {
         throw new Error(data.error || t.errorAnalyze)
       }
 
-      setProvMeta(data._meta?.tier === 'pro' ? (model === 'claude' ? 'Better' : 'Standard') : 'Standard')
+      // Map actual provider used to user-friendly label
+      const usedProvider = data._meta?.provider ?? 'gemini'
+      const providerLabel: Record<string, string> = {
+        gemini: 'Standard', haiku: 'Standard+', claude: 'Better'
+      }
+      setProvMeta(data._meta?.tier === 'pro'
+        ? (model === 'claude' ? 'Better' : `Auto (${providerLabel[usedProvider] ?? 'Standard'})`)
+        : 'Standard')
       setResult(data as AnalysisResult)
       setStage('done')
     } catch (e) {
