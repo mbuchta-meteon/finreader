@@ -3,6 +3,9 @@
 import { useState, useEffect } from 'react'
 import { useSession, signOut } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
+import Dashboard from '@/components/Dashboard'
+import { getT } from '@/lib/i18n'
+import type { AnalysisResult, Language } from '@/lib/types'
 
 function UpgradeButton() {
   const [loading, setLoading] = useState(false)
@@ -55,11 +58,25 @@ export default function AccountPage() {
   const isPro    = (session?.user as any)?.role === 'pro' || (session?.user as any)?.role === 'admin'
   const storageOptIn = (session?.user as any)?.storageOptIn as boolean
 
-  const [analyses,    setAnalyses]    = useState<Analysis[]>([])
-  const [optIn,       setOptIn]       = useState(false)
-  const [savingOptIn, setSavingOptIn] = useState(false)
-  const [deleteMsg,   setDeleteMsg]   = useState('')
-  const [stripeMsg,   setStripeMsg]   = useState('')
+  const [analyses,      setAnalyses]      = useState<Analysis[]>([])
+  const [optIn,         setOptIn]         = useState(false)
+  const [savingOptIn,   setSavingOptIn]   = useState(false)
+  const [deleteMsg,     setDeleteMsg]     = useState('')
+  const [stripeMsg,     setStripeMsg]     = useState('')
+  const [viewedAnalysis, setViewedAnalysis] = useState<{ result: AnalysisResult; fileName: string } | null>(null)
+  const [loadingId,     setLoadingId]     = useState<string | null>(null)
+  const lang: Language = 'en'
+  const t = getT(lang)
+
+  async function viewAnalysis(id: string, fileName: string) {
+    setLoadingId(id)
+    try {
+      const res = await fetch(`/api/user/analyses?id=${id}`)
+      const data = await res.json()
+      if (data.result) setViewedAnalysis({ result: data.result, fileName })
+    } catch {}
+    setLoadingId(null)
+  }
 
   useEffect(() => {
     if (status === 'unauthenticated') router.push('/auth/signin')
@@ -158,23 +175,49 @@ export default function AccountPage() {
                   </tr>
                 </thead>
                 <tbody>
-                  {analyses.map(a => (
-                    <tr key={a.id} style={{ borderBottom:'1px solid #1e293b' }}>
-                      <td style={{ padding:'10px 16px 10px 0', color:'#e2e8f0' }}>{a.fileName}</td>
-                      <td style={{ padding:'10px 16px 10px 0', color:'#64748b', fontSize:12 }}>
-                        {new Date(a.createdAt * 1000).toLocaleDateString()}
-                      </td>
-                      <td style={{ padding:'10px 16px 10px 0', color:'#64748b', fontSize:12 }}>{a.provider}</td>
-                      <td style={{ padding:'10px 0' }}>
-                        <button onClick={() => deleteAnalysis(a.id)}
-                          style={{ color:'#ef4444', background:'none', border:'none', cursor:'pointer', fontSize:12 }}>
-                          Delete
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
+                  {analyses.map(a => {
+                    const isViewed = viewedAnalysis?.fileName === a.fileName
+                    const isLoading = loadingId === a.id
+                    return (
+                      <tr key={a.id} style={{ borderBottom:'1px solid #1e293b', background: isViewed ? 'rgba(99,102,241,0.08)' : 'transparent' }}>
+                        <td style={{ padding:'10px 16px 10px 0' }}>
+                          <button
+                            onClick={() => viewAnalysis(a.id, a.fileName)}
+                            style={{ background:'none', border:'none', cursor:'pointer', color: isViewed ? '#a5b4fc' : '#e2e8f0', textAlign:'left', fontSize:14, padding:0, textDecoration: isViewed ? 'none' : 'underline', textDecorationColor:'#475569' }}
+                          >
+                            {isLoading ? '⏳ Loading...' : (isViewed ? '▼ ' : '▶ ') + a.fileName}
+                          </button>
+                        </td>
+                        <td style={{ padding:'10px 16px 10px 0', color:'#64748b', fontSize:12 }}>
+                          {new Date(a.createdAt * 1000).toLocaleDateString()}
+                        </td>
+                        <td style={{ padding:'10px 16px 10px 0', color:'#64748b', fontSize:12 }}>{a.provider}</td>
+                        <td style={{ padding:'10px 0' }}>
+                          <button onClick={() => deleteAnalysis(a.id)}
+                            style={{ color:'#ef4444', background:'none', border:'none', cursor:'pointer', fontSize:12 }}>
+                            Delete
+                          </button>
+                        </td>
+                      </tr>
+                    )
+                  })}
                 </tbody>
               </table>
+
+              {/* Inline dashboard viewer */}
+              {viewedAnalysis && (
+                <div style={{ marginTop:24, borderTop:'1px solid #334155', paddingTop:24 }}>
+                  <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:16 }}>
+                    <p style={{ color:'#a5b4fc', fontWeight:600, fontSize:15 }}>📊 {viewedAnalysis.fileName}</p>
+                    <button onClick={() => setViewedAnalysis(null)}
+                      style={{ color:'#64748b', background:'none', border:'1px solid #334155', borderRadius:8, padding:'4px 12px', cursor:'pointer', fontSize:12 }}>
+                      ✕ Close
+                    </button>
+                  </div>
+                  <Dashboard data={viewedAnalysis.result} t={t} lang={lang} />
+                </div>
+              )}
+
               <button onClick={deleteAllAnalyses}
                 style={{ marginTop:16, color:'#ef4444', background:'none', border:'1px solid #ef4444', borderRadius:8, padding:'6px 14px', cursor:'pointer', fontSize:13 }}>
                 Delete all analyses
@@ -192,7 +235,7 @@ export default function AccountPage() {
       {!isPro && (
         <Section title="Upgrade to Pro">
           <p style={{ color:'#94a3b8', marginBottom:16 }}>
-            Get unlimited analyses, multi-file upload, the Better AI model, and analysis history for €4/month.
+            Get unlimited analyses, multi-file upload, the Better model, and analysis history for €4/month.
           </p>
           <UpgradeButton />
         </Section>

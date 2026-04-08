@@ -185,7 +185,9 @@ export default function Dashboard({ data, t, lang, providerName, autoInfo }: Pro
                 {filteredCategories.map(c => <Cell key={c.category} fill={catColorMap[c.category] ?? '#6366f1'} />)}
               </Pie>
               <Tooltip formatter={(v:number, name:string) => [fmt(v), name]}
-                contentStyle={{ background:'#1e293b', border:'1px solid #334155', borderRadius:8, color:'#f1f5f9', fontSize:13 }} />
+                contentStyle={{ background:'#1e293b', border:'1px solid #334155', borderRadius:8, fontSize:13 }}
+                itemStyle={{ color:'#f1f5f9' }}
+                labelStyle={{ color:'#f1f5f9' }} />
               <Legend content={renderLegend} />
             </PieChart>
           </ResponsiveContainer>
