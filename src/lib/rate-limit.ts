@@ -13,7 +13,8 @@ const store = new Map<string, RateEntry>()
 
 const WINDOW_MS  = 60_000   // 1 minute
 const FREE_LIMIT = 5        // anonymous: 5 req/min
-const PRO_LIMIT  = 60       // pro users: 60 req/min (effectively unlimited)
+const PRO_LIMIT  = 60       // pro users: 60 req/min
+const AUTH_LIMIT = 10       // auth endpoints: 10 req/min (prevents email bombing)
 
 // Clean up old entries every 5 minutes to prevent memory leak
 setInterval(() => {
@@ -25,12 +26,19 @@ setInterval(() => {
 
 export function checkRateLimit(ip: string, isPro: boolean): { allowed: boolean; remaining: number; resetIn: number } {
   const limit = isPro ? PRO_LIMIT : FREE_LIMIT
+  return _check(ip, limit)
+}
+
+export function checkAuthRateLimit(ip: string): { allowed: boolean; remaining: number; resetIn: number } {
+  return _check(`auth:${ip}`, AUTH_LIMIT)
+}
+
+function _check(key: string, limit: number): { allowed: boolean; remaining: number; resetIn: number } {
   const now   = Date.now()
-  const entry = store.get(ip)
+  const entry = store.get(key)
 
   if (!entry || now - entry.windowStart > WINDOW_MS) {
-    // New window
-    store.set(ip, { count: 1, windowStart: now })
+    store.set(key, { count: 1, windowStart: now })
     return { allowed: true, remaining: limit - 1, resetIn: WINDOW_MS }
   }
 

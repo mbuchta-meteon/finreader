@@ -44,7 +44,8 @@ const securityHeaders = [
       // Forms only to self
       "form-action 'self'",
       // Upgrade insecure requests in production
-      "upgrade-insecure-requests",
+      // Report CSP violations to our logging endpoint
+      "report-uri /api/csp-report",
     ].join('; '),
   },
 ]
