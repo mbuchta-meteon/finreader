@@ -1,15 +1,29 @@
 'use client'
 
 import { signIn } from 'next-auth/react'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 interface Provider { id: string; name: string }
+
+declare global {
+  interface Window {
+    turnstile?: {
+      render: (el: HTMLElement, opts: Record<string, unknown>) => string
+      reset:  (id: string) => void
+      remove: (id: string) => void
+    }
+  }
+}
 
 export default function SignInPage() {
   const [email,     setEmail]     = useState('')
   const [sending,   setSending]   = useState(false)
   const [sent,      setSent]      = useState(false)
   const [providers, setProviders] = useState<Record<string, Provider>>({})
+  const [turnstileToken, setTurnstileToken] = useState('')
+
+  const turnstileRef = useRef<HTMLDivElement>(null)
+  const turnstileId  = useRef<string>('')
 
   useEffect(() => {
     fetch('/api/auth/providers')
@@ -18,12 +32,56 @@ export default function SignInPage() {
       .catch(() => {})
   }, [])
 
+  // Load Turnstile widget for magic link form
+  const hasEmail = 'resend' in providers
+  useEffect(() => {
+    if (!hasEmail || !process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY) return
+
+    const renderWidget = () => {
+      if (!turnstileRef.current || !window.turnstile || turnstileId.current) return
+      turnstileId.current = window.turnstile.render(turnstileRef.current, {
+        sitekey:           process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY,
+        callback:          (token: string) => setTurnstileToken(token),
+        'expired-callback': () => setTurnstileToken(''),
+        theme:             'dark',
+        size:              'normal',
+      })
+    }
+
+    if (window.turnstile) {
+      renderWidget()
+    } else {
+      const script = document.createElement('script')
+      script.src   = 'https://challenges.cloudflare.com/turnstile/v0/api.js'
+      script.async = true
+      script.onload = renderWidget
+      document.head.appendChild(script)
+    }
+  }, [hasEmail])
+
   const hasGitHub = 'github' in providers
-  const hasEmail  = 'resend' in providers
 
   async function handleMagicLink(e: React.FormEvent) {
     e.preventDefault()
+    if (!turnstileToken) return   // CAPTCHA not completed yet
+
     setSending(true)
+
+    // Verify CAPTCHA server-side before sending magic link
+    const captchaRes = await fetch('/api/auth/verify-captcha', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ token: turnstileToken }),
+    })
+    if (!captchaRes.ok) {
+      setSending(false)
+      if (turnstileId.current && window.turnstile) {
+        window.turnstile.reset(turnstileId.current)
+        setTurnstileToken('')
+      }
+      return
+    }
+
     await signIn('resend', { email, redirect: false, callbackUrl: '/' })
     setSending(false)
     setSent(true)
@@ -38,7 +96,7 @@ export default function SignInPage() {
           <p style={{ color:'#94a3b8', marginTop:8 }}>Sign in to unlock more features</p>
         </div>
 
-        {/* OAuth buttons */}
+        {/* OAuth buttons — no CAPTCHA needed, provider already verifies identity */}
         <div style={{ display:'flex', flexDirection:'column', gap:12, marginBottom: hasEmail ? 24 : 0 }}>
           <button onClick={() => signIn('google', { callbackUrl: '/' })} style={oauthBtn('#fff', '#0f1117')}>
             <GoogleIcon /> Continue with Google
@@ -50,7 +108,7 @@ export default function SignInPage() {
           )}
         </div>
 
-        {/* Magic link — only shown if Resend is configured */}
+        {/* Magic link — CAPTCHA protected to prevent email spam */}
         {hasEmail && (
           <>
             <div style={{ display:'flex', alignItems:'center', gap:12, marginBottom:24 }}>
@@ -66,7 +124,18 @@ export default function SignInPage() {
                   placeholder="your@email.com"
                   style={{ padding:'12px 16px', borderRadius:10, border:'1px solid #334155', background:'#1e293b', color:'#fff', fontSize:15, outline:'none' }}
                 />
-                <button type="submit" disabled={sending} style={primaryBtn}>
+                {/* Turnstile CAPTCHA — prevents email bombing */}
+                <div ref={turnstileRef} />
+                {!turnstileToken && (
+                  <p style={{ color:'#64748b', fontSize:12, textAlign:'center' }}>
+                    Complete the security check to continue
+                  </p>
+                )}
+                <button
+                  type="submit"
+                  disabled={sending || !turnstileToken}
+                  style={{ ...primaryBtn, opacity: (!turnstileToken || sending) ? 0.5 : 1 }}
+                >
                   {sending ? 'Sending...' : 'Send magic link'}
                 </button>
               </form>
@@ -97,7 +166,7 @@ export default function SignInPage() {
 
 const primaryBtn: React.CSSProperties = {
   padding:'12px 24px', borderRadius:10, border:'none', cursor:'pointer',
-  background:'#6366f1', color:'#fff', fontSize:15, fontWeight:600,
+  background:'#6366f1', color:'#fff', fontSize:15, fontWeight:600, transition:'opacity 0.2s',
 }
 
 function oauthBtn(bg: string, color: string): React.CSSProperties {
