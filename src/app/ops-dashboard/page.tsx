@@ -68,6 +68,7 @@ export default function AdminPage() {
       setAuthed(true)
     } catch (e: any) {
       setError(e.message)
+      setSecret('')   // clear password field on failure
     } finally {
       setLoading(false)
     }
@@ -119,7 +120,18 @@ export default function AdminPage() {
               placeholder="Admin secret" required
               style={{ padding:'12px 16px', borderRadius:10, border:'1px solid #334155', background:'#1e293b', color:'#fff', fontSize:15, outline:'none' }}
             />
-            {error && <p style={{ color:'#f87171', fontSize:13 }}>{error}</p>}
+            {error && (
+              <p style={{
+                color: error.includes('locked') || error.includes('Too many') ? '#fbbf24' : '#f87171',
+                fontSize:13,
+                padding:'8px 12px',
+                background: error.includes('locked') || error.includes('Too many') ? 'rgba(251,191,36,0.1)' : 'rgba(248,113,113,0.1)',
+                borderRadius:8,
+                border: `1px solid ${error.includes('locked') || error.includes('Too many') ? 'rgba(251,191,36,0.3)' : 'rgba(248,113,113,0.3)'}`,
+              }}>
+                {error.includes('locked') || error.includes('Too many') ? '🔒 ' : '⚠️ '}{error}
+              </p>
+            )}
             <button type="submit" disabled={loading}
               style={{ padding:'12px', borderRadius:10, background:'#6366f1', color:'#fff', border:'none', cursor:'pointer', fontSize:15, fontWeight:600 }}>
               {loading ? 'Checking...' : 'Enter'}
