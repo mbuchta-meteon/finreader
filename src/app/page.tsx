@@ -178,7 +178,7 @@ export default function Home() {
             ] as {code: Language, flag: string}[]).map(({ code, flag }) => (
               <button key={code} onClick={() => switchLang(code)} title={code.toUpperCase()} style={{
                 padding:'4px 7px', borderRadius:7, border: lang === code ? '1px solid #6366f1' : '1px solid transparent',
-                cursor:'pointer', fontSize:16, lineHeight:1,
+                cursor:'pointer', fontSize:16, lineHeight:1, color:'#94a3b8',
                 background: lang === code ? 'rgba(99,102,241,0.2)' : 'transparent',
               }}>
                 {flag}
