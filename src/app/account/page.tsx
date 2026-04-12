@@ -129,7 +129,10 @@ export default function AccountPage() {
 
   return (
     <main style={{ maxWidth:720, margin:'0 auto', padding:'40px 24px', minHeight:'100vh' }}>
-      <a href="/" style={{ color:'#6366f1', fontSize:14, textDecoration:'none' }}>← Back to app</a>
+      <div style={{ display:'flex', gap:16, alignItems:'center' }}>
+        <a href="/" style={{ color:'#6366f1', fontSize:14, textDecoration:'none' }}>← Back to app</a>
+        <a href="/feedback" style={{ color:'#475569', fontSize:14, textDecoration:'none' }}>💬 Feedback & Support</a>
+      </div>
 
       <h1 style={{ color:'#fff', fontSize:26, fontWeight:700, marginTop:24, marginBottom:4 }}>My Account</h1>
       <p style={{ color:'#64748b', fontSize:14, marginBottom:32 }}>

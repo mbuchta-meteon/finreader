@@ -213,6 +213,9 @@ export default function Home() {
               }}>
                 {isPro ? '⭐ Pro' : '🆓 Free'}
               </a>
+              <a href="/feedback" style={{ color:'#475569', fontSize:12, textDecoration:'none' }} title="Feedback & Support">
+                💬
+              </a>
               <button onClick={() => signOut()} style={{ color:'#64748b', background:'none', border:'none', cursor:'pointer', fontSize:12 }}>
                 Sign out
               </button>
