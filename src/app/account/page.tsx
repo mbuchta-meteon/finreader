@@ -45,6 +45,47 @@ function UpgradeButton() {
   )
 }
 
+function ManageSubscriptionButton() {
+  const [loading, setLoading] = useState(false)
+  const [error,   setError]   = useState('')
+
+  async function handleManage() {
+    setLoading(true)
+    setError('')
+    try {
+      const res  = await fetch('/api/stripe/portal', { method: 'POST' })
+      const data = await res.json()
+      if (data.url) {
+        window.location.href = data.url
+      } else {
+        setError(data.error || 'Something went wrong')
+        setLoading(false)
+      }
+    } catch {
+      setError('Failed to open billing portal')
+      setLoading(false)
+    }
+  }
+
+  return (
+    <div>
+      <div style={{ display:'flex', gap:12, flexWrap:'wrap', alignItems:'center' }}>
+        <button onClick={handleManage} disabled={loading} style={{
+          padding:'8px 20px', borderRadius:8, border:'1px solid #334155',
+          background:'transparent', color:'#94a3b8', fontSize:13,
+          cursor: loading ? 'wait' : 'pointer',
+        }}>
+          {loading ? 'Opening portal…' : '⚙️ Manage subscription'}
+        </button>
+        <span style={{ color:'#475569', fontSize:12 }}>
+          Update payment method, view invoices, or cancel
+        </span>
+      </div>
+      {error && <p style={{ color:'#f87171', fontSize:13, marginTop:8 }}>⚠️ {error}</p>}
+    </div>
+  )
+}
+
 interface Analysis {
   id: string
   fileName: string
@@ -146,6 +187,22 @@ export default function AccountPage() {
         <div style={{ marginBottom:24, padding:'12px 20px', background: stripeMsg.startsWith('🎉') ? 'rgba(99,102,241,0.1)' : 'rgba(100,116,139,0.1)', border:`1px solid ${stripeMsg.startsWith('🎉') ? '#6366f1' : '#475569'}`, borderRadius:12 }}>
           <p style={{ color: stripeMsg.startsWith('🎉') ? '#a5b4fc' : '#94a3b8', fontSize:14 }}>{stripeMsg}</p>
         </div>
+      )}
+
+      {/* Subscription management — Pro only */}
+      {isPro && (session?.user as any)?.role !== 'admin' && (
+        <Section title="Subscription">
+          <div style={{ display:'flex', alignItems:'center', gap:12, marginBottom:16 }}>
+            <span style={{ padding:'3px 12px', borderRadius:9999, background:'rgba(99,102,241,0.2)', color:'#a5b4fc', fontSize:13, fontWeight:500 }}>
+              ⭐ Pro — €4/month
+            </span>
+            <span style={{ color:'#475569', fontSize:12 }}>Active</span>
+          </div>
+          <ManageSubscriptionButton />
+          <p style={{ color:'#334155', fontSize:12, marginTop:12 }}>
+            Cancellations take effect at the end of the current billing period. You keep Pro access until then.
+          </p>
+        </Section>
       )}
 
       {/* Storage opt-in — Pro only */}
