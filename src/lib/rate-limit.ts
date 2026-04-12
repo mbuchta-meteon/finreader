@@ -14,7 +14,7 @@ const store = new Map<string, RateEntry>()
 const WINDOW_MS  = 60_000   // 1 minute
 const FREE_LIMIT = 5        // anonymous: 5 req/min
 const PRO_LIMIT  = 60       // pro users: 60 req/min
-const AUTH_LIMIT = 10       // auth endpoints: 10 req/min (prevents email bombing)
+const AUTH_LIMIT = 30       // auth endpoints: 30 req/min — bots send hundreds, humans send ~5
 
 // Clean up old entries every 5 minutes to prevent memory leak
 setInterval(() => {
