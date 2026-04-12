@@ -28,3 +28,4 @@ mcp_server/*.log
 # Test scripts (keep in crypto-fond, not in this repo)
 check-error.js
 scripts/clear-cache.js
+.github/
