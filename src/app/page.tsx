@@ -236,6 +236,56 @@ export default function Home() {
         </div>
       )}
 
+      {/* Hero section — shown only on idle state (no analysis yet) */}
+      {stage === 'idle' && (
+        <div style={{ marginBottom:32 }}>
+          {/* Feature pills */}
+          <div style={{ display:'flex', flexWrap:'wrap', gap:8, marginBottom:20, justifyContent:'center' }}>
+            {[
+              { icon:'📊', label: lang === 'cs' ? 'Výdaje dle kategorií' : 'Spending by category' },
+              { icon:'🔄', label: lang === 'cs' ? 'Detekce předplatného' : 'Subscription detection' },
+              { icon:'📈', label: lang === 'cs' ? 'Měsíční trendy' : 'Monthly trends' },
+              { icon:'🔁', label: lang === 'cs' ? 'Pravidelné platby' : 'Regular payments' },
+              { icon:'💡', label: lang === 'cs' ? 'Přehledy a tipy' : 'Smart insights' },
+            ].map(f => (
+              <span key={f.label} style={{
+                display:'inline-flex', alignItems:'center', gap:6,
+                padding:'5px 14px', borderRadius:9999, fontSize:13,
+                background:'rgba(30,41,59,0.8)', border:'1px solid #334155', color:'#94a3b8',
+              }}>
+                {f.icon} {f.label}
+              </span>
+            ))}
+          </div>
+
+          {/* Description */}
+          <p style={{
+            color:'#64748b', fontSize:14, lineHeight:1.7, textAlign:'center',
+            maxWidth:560, margin:'0 auto', padding:'0 8px',
+          }}>
+            {lang === 'cs'
+              ? 'Nahrajte výpis z banky ve formátu PDF, obrázek nebo CSV a za pár vteřin získáte kompletní přehled výdajů — bez nutnosti přihlášení do banky. Funguje s výpisy od všech bank.'
+              : 'Upload your bank statement — PDF, image or CSV — and get a complete spending breakdown in seconds. No bank login required. Works with statements from any bank, in any currency.'
+            }
+          </p>
+
+          {/* How it works — 3 steps */}
+          <div style={{ display:'grid', gridTemplateColumns:'repeat(3, 1fr)', gap:16, marginTop:24, maxWidth:600, margin:'24px auto 0' }}>
+            {[
+              { step:'1', icon:'📤', title: lang === 'cs' ? 'Nahrajte výpis' : 'Upload statement', desc: lang === 'cs' ? 'PDF, PNG, JPG nebo CSV' : 'PDF, image or CSV file' },
+              { step:'2', icon:'⚡', title: lang === 'cs' ? 'Analýza' : 'Instant analysis', desc: lang === 'cs' ? 'Zpracování do 30 sekund' : 'Results in under 30 seconds' },
+              { step:'3', icon:'📊', title: lang === 'cs' ? 'Přehled výdajů' : 'See your spending', desc: lang === 'cs' ? 'Grafy, kategorie, tipy' : 'Charts, categories, insights' },
+            ].map(s => (
+              <div key={s.step} style={{ textAlign:'center', padding:'16px 12px', background:'rgba(15,23,42,0.4)', border:'1px solid #1e293b', borderRadius:12 }}>
+                <div style={{ fontSize:24, marginBottom:8 }}>{s.icon}</div>
+                <p style={{ color:'#e2e8f0', fontSize:13, fontWeight:500, marginBottom:4 }}>{s.title}</p>
+                <p style={{ color:'#475569', fontSize:12 }}>{s.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
       <UploadZone onFiles={handleFiles} loading={loading} t={t} isPro={isPro} />
 
       {/* Cloudflare Turnstile widget — shown to anonymous free users only */}

@@ -3,7 +3,7 @@ import type { Language } from './types'
 const translations = {
   en: {
     appName: 'Finance Analyzer',
-    appSubtitle: 'Upload a bank statement — get instant spending insights',
+    appSubtitle: 'Bank statement analysis — spending categories, subscriptions & insights in seconds',
     uploadTitle: 'Drop your bank statement here',
     uploadSubtitle: 'PDF, image (PNG/JPG) or CSV · Multiple files supported · No data is stored',
     uploadMultiple: (n: number) => `${n} files selected`,
@@ -67,7 +67,7 @@ const translations = {
   },
   cs: {
     appName: 'Finanční Analyzátor',
-    appSubtitle: 'Nahrajte výpis z účtu — okamžitý přehled výdajů',
+    appSubtitle: 'Analýza výpisu z banky — výdaje, předplatné a přehledy během pár vteřin',
     uploadTitle: 'Přetáhněte výpis z banky sem',
     uploadSubtitle: 'PDF, obrázek (PNG/JPG) nebo CSV · Více souborů najednou · Data se neukládají',
     uploadMultiple: (n: number) => `${n} soubory vybrány`,
