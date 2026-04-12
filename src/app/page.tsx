@@ -79,17 +79,32 @@ export default function Home() {
   }, [isPro])
 
   useEffect(() => {
+    const valid: Language[] = ['en','cs','de','fr','it','pt','pl','hu']
+
+    // 1. Restore manually chosen language from localStorage
+    let hasManualLang = false
     try {
       const saved = localStorage.getItem('fa_lang') as Language | null
-      const valid: Language[] = ['en','cs','de','fr','it','pt','pl','hu']
-      if (saved && valid.includes(saved)) setLang(saved)
+      if (saved && valid.includes(saved)) {
+        setLang(saved)
+        hasManualLang = true
+      }
     } catch {}
-    // Track page view silently — fire and forget
+
+    // 2. Track page view — also get IP-detected language from server
     fetch('/api/track', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ path: '/' }),
-    }).catch(() => {})
+    })
+      .then(r => r.json())
+      .then(data => {
+        // Only auto-set if user has never manually chosen a language
+        if (!hasManualLang && data.language && valid.includes(data.language)) {
+          setLang(data.language as Language)
+        }
+      })
+      .catch(() => {})
   }, [])
 
   const switchLang = (l: Language) => {

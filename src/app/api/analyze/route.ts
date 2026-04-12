@@ -4,8 +4,8 @@ import { parseCSV } from '@/lib/csv-parser'
 import type { ProviderName, Language } from '@/lib/types'
 import type { FileData } from '@/lib/ai-provider'
 import { auth } from '@/lib/auth'
-import { hasUsedFreeTier, hasOwnerUsedFreeTier, recordFreeUsage, saveAnalysis, getUserById, recordApiUsage } from '@/lib/db'
-import { getFingerprint, getIP } from '@/lib/fingerprint'
+import { hasUsedFreeTier, hasOwnerUsedFreeTier, recordFreeUsage, saveAnalysis, getUserById, recordApiUsage, updateUserCountry } from '@/lib/db'
+import { getFingerprint, getIP, getCountry } from '@/lib/fingerprint'
 import { verifyTurnstile } from '@/lib/turnstile'
 import { checkRateLimit } from '@/lib/rate-limit'
 
@@ -70,6 +70,12 @@ export async function POST(req: NextRequest) {
   const userId   = session?.user?.id as string | undefined
   const userRole = (session?.user as any)?.role as string | undefined
   const isPro    = userRole === 'pro' || userRole === 'admin'
+
+  // Record country for signed-in users (fire-and-forget, don't block)
+  if (userId) {
+    const country = getCountry(req)
+    if (country) updateUserCountry(userId, country).catch(() => {})
+  }
 
   const contentType = req.headers.get('content-type') ?? ''
   if (!contentType.includes('multipart/form-data')) {

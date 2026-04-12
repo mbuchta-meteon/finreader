@@ -40,6 +40,7 @@ export async function ensureSchema() {
       stripeCustomerId TEXT,
       stripeSubId      TEXT,
       subStatus        TEXT DEFAULT 'inactive',
+      country          TEXT,
       createdAt        INTEGER NOT NULL DEFAULT (unixepoch())
     )`,
     // OAuth accounts
@@ -121,6 +122,9 @@ export async function ensureSchema() {
     await db.execute(sql)
   }
 
+  // Migration: add country column to existing users tables (safe to run multiple times)
+  try { await db.execute('ALTER TABLE users ADD COLUMN country TEXT') } catch {}
+
   _schemaReady = true
 }
 
@@ -163,6 +167,10 @@ function normaliseOwner(name: string): string {
 }
 
 // ── User helpers ───────────────────────────────────────────────────────────────
+
+export async function updateUserCountry(userId: string, country: string) {
+  await query('UPDATE users SET country = ? WHERE id = ? AND country IS NULL', [country, userId])
+}
 
 export async function getUserById(id: string): Promise<UserRow | null> {
   const r = await query('SELECT * FROM users WHERE id = ?', [id])
@@ -268,7 +276,7 @@ export async function getAdminStats() {
                 WHERE date = date('now') GROUP BY model, tier ORDER BY model, tier`),
     db.execute(`SELECT date, COUNT(*) as calls FROM api_usage
                 WHERE date >= date('now', '-6 days') GROUP BY date ORDER BY date ASC`),
-    db.execute('SELECT id, email, name, role, createdAt FROM users ORDER BY createdAt DESC LIMIT 10'),
+    db.execute('SELECT id, email, name, role, country, createdAt FROM users ORDER BY createdAt DESC LIMIT 10'),
   ])
 
   return {
@@ -301,6 +309,7 @@ export interface UserRow {
   stripeCustomerId: string | null
   stripeSubId: string | null
   subStatus: string
+  country: string | null
   createdAt: number
 }
 

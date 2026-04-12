@@ -2,6 +2,13 @@
 
 import { useState } from 'react'
 
+// Convert ISO 3166-1 alpha-2 country code to flag emoji
+function countryFlag(code: string): string {
+  return code
+    .toUpperCase()
+    .replace(/./g, c => String.fromCodePoint(c.charCodeAt(0) + 127397))
+}
+
 interface Stats {
   totalUsers: number
   proUsers: number
@@ -31,6 +38,7 @@ interface User {
   email: string
   name: string
   role: string
+  country: string | null
   createdAt: number
 }
 
@@ -357,6 +365,7 @@ export default function AdminPage() {
                 <tr style={{ borderBottom:'1px solid #334155', color:'#64748b', textAlign:'left' }}>
                   <th style={{ paddingBottom:10, paddingRight:16 }}>Name</th>
                   <th style={{ paddingBottom:10, paddingRight:16 }}>Email</th>
+                  <th style={{ paddingBottom:10, paddingRight:16 }}>Country</th>
                   <th style={{ paddingBottom:10, paddingRight:16 }}>Role</th>
                   <th style={{ paddingBottom:10, paddingRight:16 }}>Joined</th>
                   <th style={{ paddingBottom:10 }}>Actions</th>
@@ -367,6 +376,9 @@ export default function AdminPage() {
                   <tr key={u.id} style={{ borderBottom:'1px solid #1e293b' }}>
                     <td style={{ padding:'10px 16px 10px 0', color:'#e2e8f0' }}>{u.name || '—'}</td>
                     <td style={{ padding:'10px 16px 10px 0', color:'#94a3b8' }}>{u.email}</td>
+                    <td style={{ padding:'10px 16px 10px 0', color:'#94a3b8', fontSize:18 }} title={u.country ?? 'unknown'}>
+                      {u.country ? countryFlag(u.country) : '—'}
+                    </td>
                     <td style={{ padding:'10px 16px 10px 0' }}>
                       <span style={{
                         padding:'2px 10px', borderRadius:9999, fontSize:12, fontWeight:500,
